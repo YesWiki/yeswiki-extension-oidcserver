@@ -1,0 +1,21 @@
+parameters:
+  oidc_clients: []
+  oidc_keys_path: 'private/oidc'
+  oidc_auth_code_ttl: 'PT10M'
+  oidc_access_token_ttl: 'PT1H'
+  oidc_refresh_token_ttl: 'P1M'
+
+services:
+  _defaults:
+    autowire: true
+    public: true
+
+  YesWiki\Oidcserver\Service\:
+    resource: 'services/*'
+    exclude:
+      - 'services/OidcAuthCodeGrant.php'
+      - 'services/OidcAuthorizationRequest.php'
+      - 'services/IdTokenResponse.php'
+
+  YesWiki\Oidcserver\Controller\:
+    resource: 'controllers/*'

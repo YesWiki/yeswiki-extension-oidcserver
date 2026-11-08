@@ -1,0 +1,15 @@
+<div class="oidcserver">
+  <h2>{{ _t('OIDCSERVER_CONSENT_TITLE', {client: clientName}) }}</h2>
+  <p>{{ _t('OIDCSERVER_CONSENT_ACCOUNT', {user: userName}) }}</p>
+  <ul>
+    {% for scope in scopes %}
+      <li>{{ _t('OIDCSERVER_SCOPE_' ~ scope|upper) }}</li>
+    {% endfor %}
+  </ul>
+  <form method="post" action="{{ action }}" hx-boost="false">
+    <input type="hidden" name="csrf-token" value="{{ csrfToken({id: 'main', refresh: false})|e('html_attr') }}">
+    <input type="hidden" name="pending" value="{{ pendingId }}">
+    <button type="submit" name="decision" value="allow" class="btn btn-primary">{{ _t('OIDCSERVER_ALLOW') }}</button>
+    <button type="submit" name="decision" value="deny" class="btn btn-default">{{ _t('OIDCSERVER_DENY') }}</button>
+  </form>
+</div>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin name="oidcserver" version="0.1.0" active="1">
+  <author>Florian Schmitt mrflos@lilo.org</author>
+  <label>Serveur OpenID Connect</label>
+  <desc>Permet de se connecter à d'autres applications avec son compte YesWiki (OpenID Connect)</desc>
+</plugin>
