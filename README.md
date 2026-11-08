@@ -69,6 +69,16 @@ Sans cette règle, il faut donner à l'application les URL une par une.
 | `email` | `email` |
 | `offline_access` | aucun, accepté pour les clients qui le demandent |
 
+## Tests
+
+Les tests ont besoin du core : un wiki installé sur MySQL, avec l'extension dans `tools/oidcserver` et ses dépendances installées. Depuis la racine du wiki :
+
+```sh
+./vendor/bin/phpunit tools/oidcserver/tests
+```
+
+Ils créent eux-mêmes la table des jetons, un compte et des clients, puis les suppriment. Les clés de signature sont générées dans un dossier temporaire, jamais dans `private/oidc/`. En CI, `.github/workflows/tests.yml` appelle le workflow PHPUnit du core.
+
 ## Limites connues
 
 - Seul le flux par code d'autorisation est géré. Pas de flux implicite ni hybride, pas de `client_credentials`.
